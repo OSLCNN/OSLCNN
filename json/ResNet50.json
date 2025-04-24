@@ -1,0 +1,234 @@
+{"name":"ResNet50",
+ "nodes":[
+{"id":0,  "type": "conv", "name" : "conv1", "k_size" : 7 , "padding" : 3, "k_num" : 64, "stride" : 2, "parentList":[], "childList":[1]},
+{"id":1,  "type": "norm", "name" : "bn_conv1", "parentList":[0], "childList":[2]},
+{"id":2,  "type": "relu", "name" : "conv1_relu", "parentList":[1], "childList":[3]},
+{"id":3,  "type": "pool", "name" : "pool1", "k_size" : 3 ,  "stride" : 2, "parentList":[2], "childList":[4, 6]},
+
+{"id":4,  "type": "conv", "name" : "res2a_branch1", "k_size" : 1 , "padding" : 0, "k_num" : 256, "stride" : 1, "parentList":[3], "childList":[5]},
+{"id":5,  "type": "norm", "name" : "bn2a_branch1", "parentList":[4], "childList":[14]},
+
+{"id":6,  "type": "conv", "name" : "res2a_branch2a", "k_size" : 1 , "padding" : 0, "k_num" : 64, "stride" : 1, "parentList":[3], "childList":[7]},
+{"id":7,  "type": "norm", "name" : "bn2a_branch2a", "parentList":[6], "childList":[8]},
+{"id":8,  "type": "relu", "name" : "res2a_branch2a_relu", "parentList":[7], "childList":[9]},
+
+{"id":9,   "type": "conv", "name" : "res2a_branch2b", "k_size" : 3 , "padding" : 1, "k_num" : 64, "stride" : 1, "parentList":[8], "childList":[10]},
+{"id":10,  "type": "norm", "name" : "bn2a_branch2b", "parentList":[9], "childList":[11]},
+{"id":11,  "type": "relu", "name" : "res2a_branch2b_relu", "parentList":[10], "childList":[12]},
+
+{"id":12,   "type": "conv", "name" : "res2a_branch2c", "k_size" : 1 , "padding" : 0, "k_num" : 256, "stride" : 1, "parentList":[11], "childList":[13]},
+{"id":13,   "type": "norm", "name" : "bn2a_branch2c", "parentList":[12], "childList":[14]},
+
+{"id":14,   "type": "relu", "name" : "res2a_relu", "parentList":[5, 13], "childList":[15, 23]},
+
+{"id":15,  "type": "conv", "name" : "res2b_branch2a", "k_size" : 1 , "padding" : 0, "k_num" : 64, "stride" : 1, "parentList":[14], "childList":[16]},
+{"id":16,  "type": "norm", "name" : "bn2b_branch2a", "parentList":[15], "childList":[17]},
+{"id":17,  "type": "relu", "name" : "res2b_branch2a_relu", "parentList":[16], "childList":[18]},
+
+{"id":18,  "type": "conv", "name" : "res2b_branch2b", "k_size" : 3 , "padding" : 1, "k_num" : 64, "stride" : 1, "parentList":[17], "childList":[19]},
+{"id":19,  "type": "norm", "name" : "bn2b_branch2b", "parentList":[18], "childList":[20]},
+{"id":20,  "type": "relu", "name" : "res2b_branch2b_relu", "parentList":[19], "childList":[21]},
+
+{"id":21,  "type": "conv", "name" : "res2b_branch2c", "k_size" : 1 , "padding" : 0, "k_num" : 256, "stride" : 1, "parentList":[20], "childList":[22]},
+{"id":22,  "type": "norm", "name" : "bn2b_branch2c", "parentList":[21], "childList":[23]},
+
+{"id":23,  "type": "relu", "name" : "res2b_relu", "parentList":[14, 22], "childList":[24, 32]},
+
+{"id":24,  "type": "conv", "name" : "res2c_branch2a", "k_size" : 1 , "padding" : 0, "k_num" : 64, "stride" : 1, "parentList":[23], "childList":[25]},
+{"id":25,  "type": "norm", "name" : "bn2c_branch2a", "parentList":[24], "childList":[26]},
+{"id":26,  "type": "relu", "name" : "res2c_branch2a_relu", "parentList":[25], "childList":[27]},
+
+{"id":27,  "type": "conv", "name" : "res2c_branch2b", "k_size" : 3 , "padding" : 1, "k_num" : 64, "stride" : 1, "parentList":[26], "childList":[28]},
+{"id":28,  "type": "norm", "name" : "bn2c_branch2b", "parentList":[27], "childList":[29]},
+{"id":29,  "type": "relu", "name" : "res2c_branch2b_relu", "parentList":[28], "childList":[30]},
+
+{"id":30,  "type": "conv", "name" : "res2c_branch2c", "k_size" : 1 , "padding" : 0, "k_num" : 256, "stride" : 1, "parentList":[29], "childList":[31]},
+{"id":31,  "type": "norm", "name" : "bn2c_branch2c", "parentList":[30], "childList":[32]},
+
+{"id":32,  "type": "relu", "name" : "res2c_relu", "parentList":[23, 31], "childList":[33, 35]},
+
+{"id":33,  "type": "conv", "name" : "res3a_branch1", "k_size" : 1 , "padding" : 0, "k_num" : 512, "stride" : 2, "parentList":[32], "childList":[34]},
+{"id":34,  "type": "norm", "name" : "bn3a_branch1", "parentList":[33], "childList":[43]},
+
+{"id":35,  "type": "conv", "name" : "res3a_branch2a", "k_size" : 1 , "padding" : 0, "k_num" : 128, "stride" : 2, "parentList":[32], "childList":[36]},
+{"id":36,  "type": "norm", "name" : "bn3a_branch2a", "parentList":[35], "childList":[37]},
+{"id":37,  "type": "relu", "name" : "res3a_branch2a_relu", "parentList":[36], "childList":[38]},
+
+{"id":38,   "type": "conv", "name" : "res3a_branch2b", "k_size" : 3 , "padding" : 1, "k_num" : 128, "stride" : 1, "parentList":[37], "childList":[39]},
+{"id":49,  "type": "norm", "name" : "bn3a_branch2b", "parentList":[38], "childList":[40]},
+{"id":40,  "type": "relu", "name" : "res3a_branch2b_relu", "parentList":[39], "childList":[41]},
+
+{"id":41,   "type": "conv", "name" : "res3a_branch2c", "k_size" : 1 , "padding" : 0, "k_num" : 512, "stride" : 1, "parentList":[40], "childList":[42]},
+{"id":42,   "type": "norm", "name" : "bn3a_branch2c", "parentList":[41], "childList":[43]},
+
+{"id":43,   "type": "relu", "name" : "res3a_relu", "parentList":[34, 42], "childList":[44, 52]},
+
+{"id":44,  "type": "conv", "name" : "res3b_branch2a", "k_size" : 1 , "padding" : 0, "k_num" : 128, "stride" : 1, "parentList":[43], "childList":[45]},
+{"id":45,  "type": "norm", "name" :  "bn3b_branch2a", "parentList":[44], "childList":[46]},
+{"id":46,  "type": "relu", "name" : "res3b_branch2a_relu", "parentList":[45], "childList":[47]},
+
+{"id":47,  "type": "conv", "name" : "res3b_branch2b", "k_size" : 3 , "padding" : 1, "k_num" : 128, "stride" : 1, "parentList":[46], "childList":[48]},
+{"id":48,  "type": "norm", "name" :  "bn3b_branch2b", "parentList":[47], "childList":[49]},
+{"id":49,  "type": "relu", "name" : "res3b_branch2b_relu", "parentList":[48], "childList":[50]},
+
+{"id":50,  "type": "conv", "name" : "res3b_branch2c", "k_size" : 1 , "padding" : 0, "k_num" : 512, "stride" : 1, "parentList":[49], "childList":[51]},
+{"id":51,  "type": "norm", "name" :  "bn3b_branch2c", "parentList":[50], "childList":[52]},
+
+{"id":52,  "type": "relu", "name" : "res3b_relu", "parentList":[43, 51], "childList":[53, 61]},
+
+{"id":53,  "type": "conv", "name" : "res3c_branch2a", "k_size" : 1 , "padding" : 0, "k_num" : 128, "stride" : 1, "parentList":[52], "childList":[54]},
+{"id":54,  "type": "norm", "name" :  "bn3c_branch2a", "parentList":[53], "childList":[55]},
+{"id":55,  "type": "relu", "name" : "res3c_branch2a_relu", "parentList":[54], "childList":[56]},
+
+{"id":56,  "type": "conv", "name" : "res3c_branch2b", "k_size" : 3 , "padding" : 1, "k_num" : 128, "stride" : 1, "parentList":[55], "childList":[57]},
+{"id":57,  "type": "norm", "name" :  "bn3c_branch2b", "parentList":[56], "childList":[58]},
+{"id":58,  "type": "relu", "name" : "res3c_branch2b_relu", "parentList":[57], "childList":[59]},
+
+{"id":59,  "type": "conv", "name" : "res3c_branch2c", "k_size" : 1 , "padding" : 0, "k_num" : 512, "stride" : 1, "parentList":[58], "childList":[60]},
+{"id":60,  "type": "norm", "name" :  "bn3c_branch2c", "parentList":[59], "childList":[61]},
+
+{"id":61,  "type": "relu", "name" : "res3c_relu", "parentList":[52, 60], "childList":[62, 70]},
+
+{"id":62,  "type": "conv", "name" : "res3d_branch2a", "k_size" : 1 , "padding" : 0, "k_num" : 128, "stride" : 1, "parentList":[61], "childList":[63]},
+{"id":63,  "type": "norm", "name" :  "bn3d_branch2a", "parentList":[62], "childList":[64]},
+{"id":64,  "type": "relu", "name" : "res3d_branch2a_relu", "parentList":[63], "childList":[65]},
+
+{"id":65,  "type": "conv", "name" : "res3d_branch2b", "k_size" : 3 , "padding" : 1, "k_num" : 128, "stride" : 1, "parentList":[64], "childList":[66]},
+{"id":66,  "type": "norm", "name" :  "bn3d_branch2b", "parentList":[65], "childList":[67]},
+{"id":67,  "type": "relu", "name" : "res3d_branch2b_relu", "parentList":[66], "childList":[68]},
+
+{"id":68,  "type": "conv", "name" : "res3d_branch2c", "k_size" : 1 , "padding" : 0, "k_num" : 512, "stride" : 1, "parentList":[67], "childList":[69]},
+{"id":69,  "type": "norm", "name" :  "bn3d_branch2c", "parentList":[68], "childList":[70]},
+
+{"id":70,  "type": "relu", "name" : "res3d_relu", "parentList":[61, 69], "childList":[71, 73]},
+
+
+
+{"id":71,  "type": "conv", "name" : "res4a_branch1", "k_size" : 1 , "padding" : 0, "k_num" : 1024, "stride" : 2, "parentList":[70], "childList":[72]},
+{"id":72,  "type": "norm", "name" :  "bn4a_branch1", "parentList":[71], "childList":[81]},
+
+{"id":73,  "type": "conv", "name" : "res4a_branch2a", "k_size" : 1 , "padding" : 0, "k_num" : 256, "stride" : 2, "parentList":[70], "childList":[74]},
+{"id":74,  "type": "norm", "name" :  "bn4a_branch2a", "parentList":[73], "childList":[75]},
+{"id":75,  "type": "relu", "name" : "res4a_branch2a_relu", "parentList":[74], "childList":[76]},
+
+{"id":76,  "type": "conv", "name" : "res4a_branch2b", "k_size" : 3 , "padding" : 1, "k_num" : 256, "stride" : 1, "parentList":[75], "childList":[77]},
+{"id":77,  "type": "norm", "name" :  "bn4a_branch2b", "parentList":[76], "childList":[78]},
+{"id":78,  "type": "relu", "name" : "res4a_branch2b_relu", "parentList":[77], "childList":[79]},
+
+{"id":79,  "type": "conv", "name" : "res4a_branch2c", "k_size" : 1 , "padding" : 0, "k_num" : 1024, "stride" : 1, "parentList":[78], "childList":[80]},
+{"id":80,  "type": "norm", "name" :  "bn4a_branch2c", "parentList":[79], "childList":[81]},
+
+{"id":81,  "type": "relu", "name" : "res4a_relu", "parentList":[72, 80], "childList":[82, 90]},
+
+{"id":82,  "type": "conv", "name" : "res4b_branch2a", "k_size" : 1 , "padding" : 0, "k_num" : 256, "stride" : 1, "parentList":[81], "childList":[83]},
+{"id":83,  "type": "norm", "name" :  "bn4b_branch2a", "parentList":[82], "childList":[84]},
+{"id":84,  "type": "relu", "name" : "res4b_branch2a_relu", "parentList":[83], "childList":[85]},
+
+{"id":85,  "type": "conv", "name" : "res4b_branch2b", "k_size" : 3 , "padding" : 1, "k_num" : 256, "stride" : 1, "parentList":[84], "childList":[86]},
+{"id":86,  "type": "norm", "name" :  "bn4b_branch2b", "parentList":[85], "childList":[87]},
+{"id":87,  "type": "relu", "name" : "res4b_branch2b_relu", "parentList":[86], "childList":[88]},
+
+{"id":88,  "type": "conv", "name" : "res4b_branch2c", "k_size" : 1 , "padding" : 0, "k_num" : 1024, "stride" : 1, "parentList":[87], "childList":[89]},
+{"id":89,  "type": "norm", "name" :  "bn4b_branch2c", "parentList":[88], "childList":[90]},
+
+{"id":90,  "type": "relu", "name" : "res4b_relu", "parentList":[81, 89], "childList":[91, 99]},
+
+{"id":91,  "type": "conv", "name" : "res4c_branch2a", "k_size" : 1 , "padding" : 0, "k_num" : 256, "stride" : 1, "parentList":[90], "childList":[92]},
+{"id":92,  "type": "norm", "name" :  "bn4c_branch2a", "parentList":[91], "childList":[93]},
+{"id":93,  "type": "relu", "name" : "res4c_branch2a_relu", "parentList":[92], "childList":[94]},
+
+{"id":94,  "type": "conv", "name" : "res4c_branch2b", "k_size" : 3 , "padding" : 1, "k_num" : 256, "stride" : 1, "parentList":[93], "childList":[95]},
+{"id":95,  "type": "norm", "name" :  "bn4c_branch2b", "parentList":[94], "childList":[96]},
+{"id":96,  "type": "relu", "name" : "res4c_branch2b_relu", "parentList":[95], "childList":[97]},
+
+{"id":97,  "type": "conv", "name" : "res4c_branch2c", "k_size" : 1 , "padding" : 0, "k_num" : 1024, "stride" : 1, "parentList":[96], "childList":[98]},
+{"id":98,  "type": "norm", "name" :  "bn4c_branch2c", "parentList":[97], "childList":[99]},
+
+{"id":99,  "type": "relu", "name" : "res4c_relu", "parentList":[90, 98], "childList":[100, 108]},
+
+{"id":100,  "type": "conv", "name" : "res4d_branch2a", "k_size" : 1 , "padding" : 0, "k_num" : 256, "stride" : 1, "parentList":[99], "childList":[101]},
+{"id":101,  "type": "norm", "name" :  "bn4d_branch2a", "parentList":[100], "childList":[102]},
+{"id":102,  "type": "relu", "name" : "res4d_branch2a_relu", "parentList":[101], "childList":[103]},
+
+{"id":103,  "type": "conv", "name" : "res4d_branch2b", "k_size" : 3 , "padding" : 1, "k_num" : 256, "stride" : 1, "parentList":[102], "childList":[104]},
+{"id":104,  "type": "norm", "name" :  "bn4d_branch2b", "parentList":[103], "childList":[105]},
+{"id":105,  "type": "relu", "name" : "res4d_branch2b_relu", "parentList":[104], "childList":[106]},
+
+{"id":106,  "type": "conv", "name" : "res4d_branch2c", "k_size" : 1 , "padding" : 0, "k_num" : 1024, "stride" : 1, "parentList":[105], "childList":[107]},
+{"id":107,  "type": "norm", "name" :  "bn4d_branch2c", "parentList":[106], "childList":[108]},
+
+{"id":108,  "type": "relu", "name" : "res4d_relu", "parentList":[99, 107], "childList":[109,117]},
+
+{"id":109,  "type": "conv", "name" : "res4e_branch2a", "k_size" : 1 , "padding" : 0, "k_num" : 256, "stride" : 1, "parentList":[108], "childList":[110]},
+{"id":110,  "type": "norm", "name" :  "bn4e_branch2a", "parentList":[109], "childList":[111]},
+{"id":111,  "type": "relu", "name" : "res4e_branch2a_relu", "parentList":[110], "childList":[112]},
+
+{"id":112,  "type": "conv", "name" : "res4e_branch2b", "k_size" : 3 , "padding" : 1, "k_num" : 256, "stride" : 1, "parentList":[111], "childList":[113]},
+{"id":113,  "type": "norm", "name" :  "bn4e_branch2b", "parentList":[112], "childList":[114]},
+{"id":114,  "type": "relu", "name" : "res4e_branch2b_relu", "parentList":[113], "childList":[115]},
+
+{"id":115,  "type": "conv", "name" : "res4e_branch2c", "k_size" : 1 , "padding" : 0, "k_num" : 1024, "stride" : 1, "parentList":[114], "childList":[116]},
+{"id":116,  "type": "norm", "name" :  "bn4e_branch2c", "parentList":[115], "childList":[117]},
+
+{"id":117,  "type": "relu", "name" : "res4e_relu", "parentList":[108, 116], "childList":[118, 126]},
+
+{"id":118,  "type": "conv", "name" : "res4f_branch2a", "k_size" : 1 , "padding" : 0, "k_num" : 256, "stride" : 1, "parentList":[117], "childList":[119]},
+{"id":119,  "type": "norm", "name" :  "bn4f_branch2a", "parentList":[118], "childList":[120]},
+{"id":120,  "type": "relu", "name" : "res4f_branch2a_relu", "parentList":[119], "childList":[121]},
+
+{"id":121,  "type": "conv", "name" : "res4f_branch2b", "k_size" : 3 , "padding" : 1, "k_num" : 256, "stride" : 1, "parentList":[120], "childList":[122]},
+{"id":122,  "type": "norm", "name" :  "bn4f_branch2b", "parentList":[121], "childList":[123]},
+{"id":123,  "type": "relu", "name" : "res4f_branch2b_relu", "parentList":[122], "childList":[124]},
+
+{"id":124,  "type": "conv", "name" : "res4f_branch2c", "k_size" : 1 , "padding" : 0, "k_num" : 1024, "stride" : 1, "parentList":[123], "childList":[125]},
+{"id":125,  "type": "norm", "name" :  "bn4f_branch2c", "parentList":[124], "childList":[126]},
+
+{"id":126,  "type": "relu", "name" : "res4f_relu", "parentList":[117, 125], "childList":[127, 129]},
+
+{"id":127,  "type": "conv", "name" : "res5a_branch1", "k_size" : 1 , "padding" : 0, "k_num" : 2048, "stride" : 2, "parentList":[126], "childList":[128]},
+{"id":128,  "type": "norm", "name" :  "bn5a_branch1", "parentList":[127], "childList":[137]},
+
+{"id":129,  "type": "conv", "name" : "res5a_branch2a", "k_size" : 1 , "padding" : 0, "k_num" : 512, "stride" : 2, "parentList":[126], "childList":[130]},
+{"id":130,  "type": "norm", "name" :  "bn5a_branch2a", "parentList":[129], "childList":[131]},
+{"id":131,  "type": "relu", "name" : "res5a_branch2a_relu", "parentList":[130], "childList":[132]},
+
+{"id":132,  "type": "conv", "name" : "res5a_branch2b", "k_size" : 3 , "padding" : 1, "k_num" : 512, "stride" : 1, "parentList":[131], "childList":[133]},
+{"id":133,  "type": "norm", "name" :  "bn5a_branch2b", "parentList":[132], "childList":[134]},
+{"id":134,  "type": "relu", "name" : "res5a_branch2b_relu", "parentList":[133], "childList":[135]},
+
+{"id":135,  "type": "conv", "name" : "res5a_branch2c", "k_size" : 1 , "padding" : 0, "k_num" : 2048, "stride" : 1, "parentList":[134], "childList":[136]},
+{"id":136,  "type": "norm", "name" :  "bn5a_branch2c", "parentList":[135], "childList":[137]},
+
+{"id":137,  "type": "relu", "name" : "res5a_relu", "parentList":[128, 136], "childList":[138, 146]},
+
+{"id":138,  "type": "conv", "name" : "res5b_branch2a", "k_size" : 1 , "padding" : 0, "k_num" : 512, "stride" : 1, "parentList":[137], "childList":[139]},
+{"id":139,  "type": "norm", "name" :  "bn5b_branch2a", "parentList":[138], "childList":[140]},
+{"id":140,  "type": "relu", "name" : "res5b_branch2a_relu", "parentList":[139], "childList":[141]},
+
+{"id":141,  "type": "conv", "name" : "res5b_branch2b", "k_size" : 3 , "padding" : 1, "k_num" : 512, "stride" : 1, "parentList":[140], "childList":[142]},
+{"id":142,  "type": "norm", "name" :  "bn5b_branch2b", "parentList":[141], "childList":[143]},
+{"id":143,  "type": "relu", "name" : "res5b_branch2b_relu", "parentList":[142], "childList":[144]},
+
+{"id":144,  "type": "conv", "name" : "res5b_branch2c", "k_size" : 1 , "padding" : 0, "k_num" : 2048, "stride" : 1, "parentList":[143], "childList":[145]},
+{"id":145,  "type": "norm", "name" :  "bn5b_branch2c", "parentList":[144], "childList":[146]},
+
+{"id":146,  "type": "relu", "name" : "res5b_relu", "parentList":[137, 145], "childList":[147, 155]},
+
+{"id":147,  "type": "conv", "name" : "res5c_branch2a", "k_size" : 1 , "padding" : 0, "k_num" : 512, "stride" : 1, "parentList":[146], "childList":[148]},
+{"id":148,  "type": "norm", "name" :  "bn5c_branch2a", "parentList":[147], "childList":[149]},
+{"id":149,  "type": "relu", "name" : "res5c_branch2a_relu", "parentList":[148], "childList":[150]},
+
+{"id":150,  "type": "conv", "name" : "res5c_branch2b", "k_size" : 3 , "padding" : 1, "k_num" : 512, "stride" : 1, "parentList":[149], "childList":[151]},
+{"id":151,  "type": "norm", "name" :  "bn5c_branch2b", "parentList":[150], "childList":[152]},
+{"id":152,  "type": "relu", "name" : "res5c_branch2b_relu", "parentList":[151], "childList":[153]},
+
+{"id":153,  "type": "conv", "name" : "res5c_branch2c", "k_size" : 1 , "padding" : 0, "k_num" : 2048, "stride" : 1, "parentList":[152], "childList":[154]},
+{"id":154,  "type": "norm", "name" :  "bn5c_branch2c", "parentList":[153], "childList":[155]},
+
+{"id":155,  "type": "relu", "name" : "res5c_relu", "parentList":[146, 154], "childList":[156]},
+
+{"id":156,  "type": "pool", "name" : "pool5", "k_size" : 7 ,  "stride" : 1, "parentList":[155], "childList":[157]},
+
+{"id":157, "type": "fc",   "name" : "fc1000",  "out" :  1000, "parentList":[156], "childList":[]}
+]}
+

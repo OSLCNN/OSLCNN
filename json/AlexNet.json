@@ -1,0 +1,26 @@
+{"name":"AlexNet",
+ "nodes":[
+{"id":0,  "type": "conv", "name" : "conv1", "k_size" : 11 , "k_num" : 96, "stride" : 4, "parentList":[], "childList":[1]},
+{"id":1,  "type": "relu", "name" : "relu1", "parentList":[0], "childList":[2]},
+{"id":2,  "type": "norm", "name" : "norm1", "parentList":[1], "childList":[3]},
+{"id":3,  "type": "pool", "name" : "pool1", "k_size" : 3 ,  "stride" : 2, "parentList":[2], "childList":[4]},
+{"id":4,  "type": "conv", "name" : "conv2", "k_size" : 5 ,  "k_num" : 256, "padding" : 2, "parentList":[3], "childList":[5]},
+{"id":5,  "type": "relu", "name" : "relu2", "parentList":[4], "childList":[6]},
+{"id":6,  "type": "norm", "name" : "norm2", "parentList":[5], "childList":[7]},
+{"id":7,  "type": "pool", "name" : "pool2", "k_size" : 3 ,  "stride" : 2, "parentList":[6], "childList":[8]},
+{"id":8,  "type": "conv", "name" : "conv3", "k_size" : 3 ,  "k_num" : 384, "padding" : 1, "parentList":[7], "childList":[9]},
+{"id":9,  "type": "relu", "name" : "relu3", "parentList":[8], "childList":[10]},
+{"id":10, "type": "conv", "name" : "conv4", "k_size" : 3 ,  "k_num" : 384, "padding" : 1, "parentList":[9], "childList":[11]},
+{"id":11, "type": "relu", "name" : "relu4", "parentList":[10], "childList":[12]},
+{"id":12, "type": "conv", "name" : "conv5", "k_size" : 3 ,  "k_num" : 256, "padding" : 1, "parentList":[11], "childList":[13]},
+{"id":13, "type": "relu", "name" : "relu5", "parentList":[12], "childList":[14]},
+{"id":14, "type": "pool", "name" : "pool5", "k_size" : 3 ,  "stride" : 2, "parentList":[13], "childList":[15]},
+{"id":15, "type": "fc",   "name" : "fc6"  , "out" :  4096, "parentList":[14], "childList":[16]},
+{"id":16, "type": "relu", "name" : "relu6", "parentList":[15], "childList":[17]},
+{"id":17, "type": "drop", "name" : "drop6", "parentList":[16], "childList":[18]},
+{"id":18, "type": "fc",   "name" : "fc7",  "out" :  4096, "parentList":[17], "childList":[19]},
+{"id":19, "type": "relu", "name" : "relu7", "parentList":[18], "childList":[20]},
+{"id":20, "type": "drop", "name" : "drop7", "parentList":[19], "childList":[21]},
+{"id":21, "type": "fc",   "name" : "fc8",  "out" :  1000, "parentList":[20], "childList":[]}
+ ]}
+
